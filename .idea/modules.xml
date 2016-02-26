@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MDM_HW2.iml" filepath="$PROJECT_DIR$/MDM_HW2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TokenRing/TokenRing.iml" filepath="$PROJECT_DIR$/TokenRing/TokenRing.iml" />
     </modules>
   </component>
 </project>
-
