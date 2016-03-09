@@ -44,11 +44,11 @@ public class GraphPanel {
 
     public static void main(String arg[]){
 
-        Graph<String,Number> graph=createGraph();
+        Graph<TokenNode,Number> graph=createGraph();
         Forest<String,Number> tree;
 
-        VisualizationViewer<String,Number> vv2;
-        VisualizationViewer<String,Number> vv0;
+        VisualizationViewer<TokenNode,Number> vv2;
+        VisualizationViewer<TokenNode,Number> vv0;
 
 
 
@@ -75,22 +75,22 @@ public class GraphPanel {
         // create two layouts for the one graph, one layout for each model
 
 
-        Layout<String,Number> layout0 = new KKLayout<String,Number>(graph);
+        Layout<TokenNode,Number> layout0 = new KKLayout<TokenNode,Number>(graph);
         layout0.setSize(preferredLayoutSize);
        // Layout<String,Number> layout1 = new TreeLayout<String, Number>(tree,150,150);
         //Layout<String,Number> layout2 = new StaticLayout<String,Number>(graph, layout1);
-        Layout<String,Number> layout2 = new StaticLayout<String,Number>(graph, layout0);
+        Layout<TokenNode,Number> layout2 = new StaticLayout<TokenNode,Number>(graph, layout0);
 
 
-        VisualizationModel<String,Number> vm0 =
-                new DefaultVisualizationModel<String,Number>(layout0, preferredSize);
-        VisualizationModel<String,Number> vm2 = new DefaultVisualizationModel<String,Number>(layout2, preferredSizeRect);
+        VisualizationModel<TokenNode,Number> vm0 =
+                new DefaultVisualizationModel<TokenNode,Number>(layout0, preferredSize);
+        VisualizationModel<TokenNode,Number> vm2 = new DefaultVisualizationModel<TokenNode,Number>(layout2, preferredSizeRect);
 
 
         // adding transformer for fixing vertex size
 
-        Transformer<String,Shape> vertexSize = new Transformer<String,Shape>(){
-            public Shape transform(String i){
+        Transformer<TokenNode,Shape> vertexSize = new Transformer<TokenNode,Shape>(){
+            public Shape transform(TokenNode i){
                 Ellipse2D circle = new Ellipse2D.Double(-15, -15, 30, 30);
                 // in this case, the vertex is twice as large
                 return AffineTransform.getScaleInstance(2, 2).createTransformedShape(circle);
@@ -100,8 +100,8 @@ public class GraphPanel {
 
 
 
-        vv0 = new VisualizationViewer<String,Number>(vm0, preferredSize);
-        vv2 = new VisualizationViewer<String,Number>(vm2, preferredSizeRect);
+        vv0 = new VisualizationViewer<TokenNode,Number>(vm0, preferredSize);
+        vv2 = new VisualizationViewer<TokenNode,Number>(vm2, preferredSizeRect);
 
 
         vv2.getRenderContext().setMultiLayerTransformer(vv0.getRenderContext().getMultiLayerTransformer());
@@ -128,19 +128,19 @@ public class GraphPanel {
 
     }
 
-    private static Graph<String, Number> createGraph() {
-        Graph<String, Number> graph =   new DirectedOrderedSparseMultigraph<String, Number>();
+    private static Graph<TokenNode, Number> createGraph() {
+        Graph<TokenNode, Number> graph =   new DirectedOrderedSparseMultigraph<TokenNode, Number>();
         //Graph<String, Number> graph =   new UndirectedOrderedSparseMultigraph<String, Number>();
 
         //Graph<String, Number> graph =   new DirectedSparseGraph<String, Number>();
 
 
-        final String vertex1 = "1";
-        final String vertex2 = "2";
-        final String vertex3 = "3";
-        final String vertex4 = "4";
-        final String vertex5 = "5";
-        final String vertex6 = "6";
+        final TokenNode vertex1 = new TokenNode("1");
+        final TokenNode vertex2 = new TokenNode("2");
+        final TokenNode vertex3 = new TokenNode("3");
+        final TokenNode vertex4 = new TokenNode("4");
+        final TokenNode vertex5 = new TokenNode("5");
+        final TokenNode vertex6 = new TokenNode("6");
         /*
         final String vertex6 = "6";
         final String vertex7 = "7";

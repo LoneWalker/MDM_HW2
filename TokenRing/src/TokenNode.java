@@ -4,6 +4,13 @@
 public class TokenNode {
     public String name;
 
+    TokenNode(){}
+
+    TokenNode(String name){
+        this.name=name;
+
+    }
+
     @Override
     public String toString(){
         return name;
