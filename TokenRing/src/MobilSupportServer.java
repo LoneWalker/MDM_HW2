@@ -3,7 +3,7 @@ import java.util.ArrayDeque;
 /**
  * Created by xc9pd on 2/26/2016.
  */
-public class MobilSupportServer {
+public class MobilSupportServer extends TokenNode {
 
     private ArrayDeque request;
     private ArrayDeque grantQueue;
