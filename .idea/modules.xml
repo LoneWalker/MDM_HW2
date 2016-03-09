@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MDM_HW2.iml" filepath="$PROJECT_DIR$/MDM_HW2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TokeRing/TokeRing.iml" filepath="$PROJECT_DIR$/TokeRing/TokeRing.iml" />
     </modules>
   </component>
 </project>
