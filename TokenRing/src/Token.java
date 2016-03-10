@@ -3,21 +3,16 @@
  */
 public class Token {
 
-<<<<<<< HEAD
+
     public TokenNode from;
     public TokenNode destination;
-=======
-    public Object from;
-    public Object destination;
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
+
+
     public Quest q;
     public boolean isRequestToken;
     public MobilSupportServer initialMSS;
     public int round;
-<<<<<<< HEAD
     public TokenNode currentLocation;
-=======
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
 
 
 
@@ -29,10 +24,7 @@ public class Token {
         this.from=null;
         this.destination=null;
         this.q=null;
-<<<<<<< HEAD
         this.currentLocation=mss;
-=======
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
 
     }
 
@@ -43,10 +35,7 @@ public class Token {
         this.q=tk.q;
         this.round=tk.round;
         this.initialMSS=tk.initialMSS;
-<<<<<<< HEAD
         this.currentLocation=tk.currentLocation;
-=======
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
 
     }
 
@@ -55,7 +44,6 @@ public class Token {
         this.round++;
     }
 
-<<<<<<< HEAD
     public void executeToken(){
         System.out.println(" ");
         System.out.println("Excuting token, the token is current in "+currentLocation.toString());
@@ -63,8 +51,6 @@ public class Token {
         this.currentLocation.executeToken(this);
     }
 
-=======
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
 
 
 

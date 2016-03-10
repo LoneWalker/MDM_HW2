@@ -17,11 +17,9 @@ public class TokenNode {
 
     }
 
-<<<<<<< HEAD
+
     public void executeToken(Token token){
-=======
-    public void executeToken(){
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
+
 
     }
 
@@ -33,11 +31,9 @@ public class TokenNode {
 
     }
 
-<<<<<<< HEAD
+
     public void forwardToken(Token token){
-=======
-    public void forwardToken(){
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
+
 
     }
 
@@ -45,13 +41,11 @@ public class TokenNode {
 
     }
 
-<<<<<<< HEAD
+
     public void addToken(Token token){
 
     }
 
-=======
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
 
 
 }

@@ -36,16 +36,10 @@ public class test {
         mh5.submitRequest("e");
 
         mss1.addToken(tk);
-<<<<<<< HEAD
         tk.executeToken();
         tk.executeToken();
         System.out.println("end?");
 
-=======
-        mss1.executeToken();
-        System.out.println("end?");
-        System.out.println(mss2.tk.from.toString());
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
 
 
 

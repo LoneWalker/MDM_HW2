@@ -10,13 +10,9 @@ public class MobilSupportServer extends TokenNode {
     private ArrayDeque request;
     private ArrayDeque grantQueue;
     private boolean waitingRingReturn;
-<<<<<<< HEAD
+
     public HashMap<TokenNode,TokenNode> map;
     public boolean tk;
-=======
-    public HashMap<MobilHost,MobilSupportServer> map;
-    public Token tk;
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
     public MobilSupportServer successor;
     public ArrayList<MobilHost> userList;
 
@@ -28,11 +24,7 @@ public class MobilSupportServer extends TokenNode {
         this.successor=null;
         this.request=new ArrayDeque<Quest>();
         this.grantQueue=new ArrayDeque<Quest>();
-<<<<<<< HEAD
         this.map=new HashMap<TokenNode, TokenNode>();
-=======
-        this.map=new HashMap<MobilHost, MobilSupportServer>();
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
     }
 
     public void addUser(MobilHost mh){
@@ -60,7 +52,6 @@ public class MobilSupportServer extends TokenNode {
         }
     }
 
-<<<<<<< HEAD
     public void executeToken(Token token){
 
         if(this.tk) {
@@ -81,27 +72,7 @@ public class MobilSupportServer extends TokenNode {
                 token.addRound(this);
                 System.out.println("Current token round is "+token.round);
                 putToGrantQueue(token);
-=======
-    public void executeToken(){
 
-        if(this.tk!=null) {
-            Token ntk = new Token(this.tk);
-
-            //if the token is from MH like a return token after a request, the MSS will do the excuteQueue again.
-            if (ntk.isRequestToken) {
-                System.out.print("The token is a return token from MobilHost " + ntk.from.toString());
-                excuteQueue(ntk);
-            }
-            //if the token is a token pass from the parent MSS, the current MSS will put request to grant queue;
-            else {
-                if (ntk.from != null) {
-                    System.out.println("The token is from the parent MSS " + ntk.from.toString() + ". Now puting request queue to Grant queue");
-                } else {
-                    System.out.println("Start process the initial token, Now puting request queue to Grant queue");
-                }
-                ntk.addRound(this);
-                putToGrantQueue(ntk);
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
             }
         }
         else {
@@ -134,7 +105,6 @@ public class MobilSupportServer extends TokenNode {
         }
     }
 
-<<<<<<< HEAD
     public void forwardToken(Token token){
         this.tk=false;
 
@@ -156,29 +126,7 @@ public class MobilSupportServer extends TokenNode {
         }else{
             System.out.println("There is no more requests in the grant queue and is going to pass the token to the successor "+this.successor.toString());
             this.successor.addToken(token);
-=======
-    public void forwardToken(Token tk){
-        this.tk=null;
-        Token ntk=new Token(tk);
-        if(ntk.isRequestToken){
 
-            if(this.equals(this.map.get(ntk.destination))){
-
-                System.out.println("The mobilHost is in current server "+this.name+", So directly send token to the mobilhost "+ntk.destination.toString());
-
-                ((MobilHost)ntk.destination).addToken(ntk);
-                ((MobilHost)ntk.destination).executeToken();
-
-            }else{
-                System.out.println("The mobilHost is not in current MSS "+this.name+", So forward token to the MSS "+this.map.get(ntk.destination).toString());
-
-                this.map.get(ntk.destination).addToken(ntk);
-                this.map.get(ntk.destination).forwardToken(ntk);
-            }
-        }else{
-            System.out.println("Finished all the request and is going to pass the token to the successor "+this.successor.toString());
-            this.successor.addToken(ntk);
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
         }
 
 
@@ -222,18 +170,13 @@ public class MobilSupportServer extends TokenNode {
         return true;
     }
 
-<<<<<<< HEAD
+
     public void addToken(Token token){
         this.tk=true;
         token.currentLocation=this;
         if(token.from!=null) {
             System.out.print("Server " + this.name + " Just receive a token from " + token.from.toString());
-=======
-    public void addToken(Token tk){
-        this.tk=new Token(tk);
-        if(tk.from!=null) {
-            System.out.print("Server " + this.name + " Just receive a token from " + tk.from.toString());
->>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
+
 
         }
         else {
