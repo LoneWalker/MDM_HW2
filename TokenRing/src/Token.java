@@ -57,7 +57,12 @@ public class Token {
         this.currentLocation.executeToken(this);
     }
 
-
+    public void execute_3(){
+        System.out.println(" ");
+        System.out.println("Excuting token, the token is current in "+currentLocation.toString());
+        System.out.println(" ");
+        this.currentLocation.execute_3(this);
+    }
 
 
 
