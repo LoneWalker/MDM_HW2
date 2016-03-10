@@ -16,6 +16,9 @@ public class MobilSupportServer extends TokenNode {
     public MobilSupportServer successor;
     public ArrayList<MobilHost> userList;
 
+    //replication based protocol
+    public ArrayList pendingRequest;
+
 
     public MobilSupportServer(String name){
         this.userList=new ArrayList<MobilHost>();
@@ -25,6 +28,10 @@ public class MobilSupportServer extends TokenNode {
         this.request=new ArrayDeque<Quest>();
         this.grantQueue=new ArrayDeque<Quest>();
         this.map=new HashMap<TokenNode, TokenNode>();
+
+
+        //replication protocol
+        this.pendingRequest=new ArrayList( );
     }
 
     public void addUser(MobilHost mh){

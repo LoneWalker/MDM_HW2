@@ -38,6 +38,13 @@ public class test {
         mss1.addToken(tk);
         tk.executeToken();
         tk.executeToken();
+        mh2.moveTo(mss3);
+        tk.executeToken();
+        tk.executeToken();
+        tk.executeToken();
+        tk.executeToken();
+        tk.executeToken();
+        tk.executeToken();
         System.out.println("end?");
 
 

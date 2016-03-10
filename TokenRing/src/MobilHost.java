@@ -9,6 +9,9 @@ public class MobilHost extends TokenNode{
     private boolean isHoldingToken;
     private boolean tk;
 
+    //replication approach
+    public int h_count;
+
     public String name;
     public MobilHost(String name){
         this.name=name;
@@ -17,6 +20,9 @@ public class MobilHost extends TokenNode{
         this.tk=false;
         currentServer=null;
         prevousServer=null;
+
+        //3
+        this.h_count=0;
 
     }
 
