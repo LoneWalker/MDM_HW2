@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 Manifest-Version: 1.0
 Main-Class: GraphPanel
 
+=======
+Manifest-Version: 1.0
+Main-Class: GraphPanel
+
+>>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
