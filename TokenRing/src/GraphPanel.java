@@ -141,6 +141,7 @@ public class GraphPanel {
         final TokenNode vertex4 = new TokenNode("4");
         final TokenNode vertex5 = new TokenNode("5");
         final TokenNode vertex6 = new TokenNode("6");
+        //final TokenNode vertex7 = new TokenNode("7");
         /*
         final String vertex6 = "6";
         final String vertex7 = "7";
@@ -154,6 +155,7 @@ public class GraphPanel {
         graph.addVertex(vertex4);
         graph.addVertex(vertex5);
         graph.addVertex(vertex6);
+        //graph.addVertex(vertex7);
 
         /*
         graph.addVertex(vertex6);
@@ -168,6 +170,7 @@ public class GraphPanel {
         graph.addEdge(4, vertex4, vertex5);
         graph.addEdge(5, vertex5, vertex6);
         graph.addEdge(6, vertex6, vertex1);
+        //graph.addEdge(7, vertex7, vertex4);
 
         /*
         graph.addEdge(5, vertex5, vertex6);
