@@ -9,7 +9,7 @@ public class ProjectConstants {
     public static String SCHEME_PROXY="Proxy Scheme";
     public static String SCHEME_REPLICATION="Replication Scheme";
 
-    public static String CURRENT_MODE;
+    public static String CURRENT_SCHEME;
 
     //for node coloring
     public static int NODE_COLOR_DEFAULT=0;
