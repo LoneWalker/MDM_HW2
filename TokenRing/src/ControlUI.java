@@ -1,7 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  *
@@ -12,8 +9,14 @@ public class ControlUI extends javax.swing.JFrame {
     /**
      * Creates new form ControlUI
      */
-    public ControlUI() {
+    test mainObject;
+    public ControlUI(test t) {
+
+        mainObject=t;
+
         initComponents();
+
+        
     }
 
     /**
@@ -448,10 +451,39 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void jComboBox_Select_MSSActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        if (ProjectConstants.CURRENT_SCHEME ==ProjectConstants.SCHEME_PROXY){
+
+        }else {
+
+            ArrayList<TokenNode> mssList=mainObject.nodeList;
+
+            jComboBox_Select_MSS.removeAllItems();
+
+            for (TokenNode mss: mssList){
+
+            }
+
+
+
+        }
     }
 
     private void jComboBox_CHL_Old_ProxyActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        if(ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
+
+            ArrayList<TokenNode> mssList=mainObject.nodeList;
+
+            jComboBox_Select_MSS.removeAllItems();
+
+            for (TokenNode mss: mssList){
+
+            }
+
+
+        }
     }
 
     private void jComboBox_CHL_Old_MSSActionPerformed(java.awt.event.ActionEvent evt) {
@@ -460,6 +492,19 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void jComboBox_Request_ProxyActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        if(ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
+
+            ArrayList<TokenNode> mssList=mainObject.nodeList;
+
+            jComboBox_Select_MSS.removeAllItems();
+
+            for (TokenNode mss: mssList){
+
+            }
+
+
+        }
     }
 
     private void jComboBox_Request_MSSActionPerformed(java.awt.event.ActionEvent evt) {
@@ -476,7 +521,7 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void jButton_CS_ChangeActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        ProjectConstants.CURRENT_MODE=jComboBox_ChangeScheme.getSelectedItem().toString();
+        ProjectConstants.CURRENT_SCHEME =jComboBox_ChangeScheme.getSelectedItem().toString();
         initializeChangeScheme();
 
     }

@@ -1,15 +1,42 @@
+import java.util.ArrayList;
+
 /**
  * Created by xc9pd on 3/9/2016.
  */
 public class test {
 
+    public ArrayList<TokenNode> nodeList;
+
+
     public static void main(String[] arg){
+
+
+
+
+        ProjectConstants.CURRENT_SCHEME=ProjectConstants.SCHEME_INFORM;
+        test obj= new test();
+        obj.nodeList=new ArrayList<TokenNode>();
+        obj.init();
+
+
+        ControlUI controlUI= new ControlUI(obj);
+    }
+
+
+    public void init(){
+
 
         MobilSupportServer mss1=new MobilSupportServer("MSS_1");
         MobilSupportServer mss2=new MobilSupportServer("MSS_2");
         MobilSupportServer mss3=new MobilSupportServer("MSS_3");
         MobilSupportServer mss4=new MobilSupportServer("MSS_4");
         MobilSupportServer mss5=new MobilSupportServer("MSS_5");
+
+        nodeList.add(mss1);
+        nodeList.add(mss2);
+        nodeList.add(mss3);
+        nodeList.add(mss4);
+        nodeList.add(mss5);
 
         mss1.successor=mss2;
         mss2.successor=mss3;
@@ -40,11 +67,19 @@ public class test {
         tk.executeToken();
         System.out.println("end?");
 
+    }
 
+    public void initInfoScheme(){
 
-
-
-
+        init();
+    }
+    public void initProxyScheme(){
 
     }
+    public void initReplicationScheme(){
+
+    }
+
+
+
 }
