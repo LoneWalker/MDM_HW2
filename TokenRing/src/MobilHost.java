@@ -1,19 +1,20 @@
 /**
  * Created by xc9pd on 2/26/2016.
  */
-public class MobilHost {
+
+public class MobilHost extends TokenNode{
     public MobilSupportServer currentServer;
     public MobilSupportServer prevousServer;
     private boolean availableForSubmit;
     private boolean isHoldingToken;
-    private Token tk;
+    private boolean tk;
 
     public String name;
     public MobilHost(String name){
         this.name=name;
         this.availableForSubmit=true;
         this.isHoldingToken=false;
-        this.tk=null;
+        this.tk=false;
         currentServer=null;
         prevousServer=null;
 
@@ -32,40 +33,55 @@ public class MobilHost {
     }
 
     public void moveTo(MobilSupportServer mss){
-        this.prevousServer=this.currentServer;
-        this.currentServer=mss;
-        if(prevousServer!=null) {
-            this.prevousServer.map.put(this, currentServer);
+        if(!isHoldingToken) {
+            this.prevousServer = this.currentServer;
+            this.currentServer = mss;
+            if (prevousServer != null) {
+                this.prevousServer.map.put(this, currentServer);
 
-            this.prevousServer.userList.remove(this);
-        }
-        if(currentServer!=null) {
-            this.currentServer.map.put(this, currentServer);
-            this.currentServer.userList.add(this);
+                this.prevousServer.userList.remove(this);
+            }
+            if (currentServer != null) {
+                this.currentServer.map.put(this, currentServer);
+                this.currentServer.userList.add(this);
+            }
+        }else{
+            System.out.println("Failed to move to the server "+mss.toString()+". Because the user is holding a token.");
+
         }
     }
 
 
-    public void addToken(Token tk){
-        this.tk=tk;
+
+    public void addToken(Token token){
+        this.tk=true;
         this.isHoldingToken=true;
         this.availableForSubmit=false;
+        token.currentLocation=this;
 
-        executeToken();
+        //executeToken(token);
     }
 
-    public void executeToken(){
-        System.out.println("MobilHost "+this.name+" Just received a token from "+this.tk.from);
-        System.out.println("         After access critical area "+this.tk.q.criticalArea+", Token is going back to "+ this.tk.from);
-        Token ntk=new Token(this.tk);
-        ntk.destination=ntk.from;
-        ntk.from=this;
-        ntk.isRequestToken=true;
-        this.tk=null;
-        ((MobilSupportServer)ntk.destination).addToken(ntk);
-        ((MobilSupportServer)ntk.destination).executeToken();
+    public void executeToken(Token token){
+        System.out.println("MobilHost "+this.name+" Just received a token from "+token.from);
+        System.out.println("         After access critical area "+token.q.criticalArea+", Token is going back to "+ token.from);
+
+        this.availableForSubmit=true;
+        forwardToken(token);
+
 
     }
+
+    public void forwardToken(Token token) {
+        token.destination = token.from;
+        token.from = this;
+        token.isRequestToken = true;
+        this.tk = false;
+        this.isHoldingToken = false;
+        token.destination.addToken(token);
+    }
+
+
 
 
     public String toString(){

@@ -1,4 +1,8 @@
 #to make listed thing in effect already added files should be untracked first (use command "git rm --chached folder or file or pattern")
+<<<<<<< HEAD
+.idea/
+=======
+>>>>>>> 91a9c29ef51d0fbc7086b9c0ecb796bec57291b8
 TokenRing/.idea/
 TokenRing/TokenRing.iml
 TokenRing/out/

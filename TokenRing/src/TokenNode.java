@@ -17,7 +17,9 @@ public class TokenNode {
 
     }
 
-    public void executeToken(){
+
+    public void executeToken(Token token){
+
 
     }
 
@@ -29,11 +31,18 @@ public class TokenNode {
 
     }
 
-    public void forwardToken(){
+
+    public void forwardToken(Token token){
+
 
     }
 
     public void excuteQueue(){
+
+    }
+
+
+    public void addToken(Token token){
 
     }
 

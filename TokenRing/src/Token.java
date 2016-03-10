@@ -3,12 +3,16 @@
  */
 public class Token {
 
-    public Object from;
-    public Object destination;
+
+    public TokenNode from;
+    public TokenNode destination;
+
+
     public Quest q;
     public boolean isRequestToken;
     public MobilSupportServer initialMSS;
     public int round;
+    public TokenNode currentLocation;
 
 
 
@@ -20,6 +24,7 @@ public class Token {
         this.from=null;
         this.destination=null;
         this.q=null;
+        this.currentLocation=mss;
 
     }
 
@@ -30,12 +35,20 @@ public class Token {
         this.q=tk.q;
         this.round=tk.round;
         this.initialMSS=tk.initialMSS;
+        this.currentLocation=tk.currentLocation;
 
     }
 
     public void addRound(MobilSupportServer mss){
         if(initialMSS.equals(mss))
         this.round++;
+    }
+
+    public void executeToken(){
+        System.out.println(" ");
+        System.out.println("Excuting token, the token is current in "+currentLocation.toString());
+        System.out.println(" ");
+        this.currentLocation.executeToken(this);
     }
 
 
