@@ -16,7 +16,7 @@ public class test {
         ProjectConstants.CURRENT_SCHEME=ProjectConstants.SCHEME_INFORM;
         test obj= new test();
 
-        obj.initProxyScheme();
+        obj.init();
 
 
 
@@ -51,6 +51,12 @@ public class test {
         MobilHost mh3=new MobilHost("MH_3");
         MobilHost mh4=new MobilHost("MH_4");
         MobilHost mh5=new MobilHost("MH_5");
+
+        mh1.moveTo(mss1);
+        mh2.moveTo(mss2);
+        mh3.moveTo(mss3);
+        mh4.moveTo(mss4);
+        mh5.moveTo(mss5);
 
         tk=new Token(mss1);
 
@@ -123,6 +129,45 @@ public class test {
         MobilSupportServer mss4=new MobilSupportServer("MSS_4");
         MobilSupportServer mss5=new MobilSupportServer("MSS_5");
 
+        nodeList=new ArrayList<TokenNode>();
+
+        nodeList.add(p1);
+        nodeList.add(p2);
+
+        mss1.addToProxy(p1);
+        mss2.addToProxy(p1);
+        mss3.addToProxy(p1);
+        mss4.addToProxy(p2);
+        mss5.addToProxy(p2);
+
+        p1.successor=p2;
+        p2.successor=p1;
+
+        MobilHost mh1=new MobilHost("MH_1");
+        MobilHost mh2=new MobilHost("MH_2");
+        MobilHost mh3=new MobilHost("MH_3");
+        MobilHost mh4=new MobilHost("MH_4");
+        MobilHost mh5=new MobilHost("MH_5");
+
+        mh1.moveTo_Proxy(mss1);
+        mh2.moveTo_Proxy(mss2);
+        mh3.moveTo_Proxy(mss3);
+        mh4.moveTo_Proxy(mss4);
+        mh5.moveTo_Proxy(mss5);
+
+        tk=new Token(p1);
+        p1.addToken(tk);
+
+
+        /*
+           Proxy p1=new Proxy("proxy_1");
+        Proxy p2=new Proxy("proxy_2");
+        MobilSupportServer mss1=new MobilSupportServer("MSS_1");
+        MobilSupportServer mss2=new MobilSupportServer("MSS_2");
+        MobilSupportServer mss3=new MobilSupportServer("MSS_3");
+        MobilSupportServer mss4=new MobilSupportServer("MSS_4");
+        MobilSupportServer mss5=new MobilSupportServer("MSS_5");
+
         nodeList.add(p1);
         nodeList.add(p2);
 
@@ -177,6 +222,7 @@ public class test {
         tk.executeProxy();
         tk.executeProxy();
         tk.executeProxy();
+         */
 
     }
 
@@ -207,6 +253,13 @@ public class test {
         MobilHost mh3=new MobilHost("MH_3");
         MobilHost mh4=new MobilHost("MH_4");
         MobilHost mh5=new MobilHost("MH_5");
+
+
+        mh1.moveTo(mss1);
+        mh2.moveTo(mss2);
+        mh3.moveTo(mss3);
+        mh4.moveTo(mss4);
+        mh5.moveTo(mss5);
 
         tk=new Token(mss1);
         mss1.addToken(tk);

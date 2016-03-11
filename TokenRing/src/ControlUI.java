@@ -466,22 +466,9 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void jComboBox_CHL_Old_ProxyActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-
-        if(ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
-
-            Proxy selected_proxy=(Proxy)jComboBox_CHL_Old_Proxy.getSelectedItem();
-
-            jComboBox_CHL_Old_MSS.removeAllItems();
-
-            for (MobilSupportServer mss:selected_proxy.mssList){
-                jComboBox_CHL_Old_MSS.addItem(mss);
-            }
-
-            jComboBox_CHL_Old_MSSActionPerformed();
-
-
-        }
+        jComboBox_CHL_Old_ProxyActionPerformed();
     }
+
 
     private void jComboBox_CHL_Old_MSSActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -496,22 +483,10 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void jComboBox_Request_ProxyActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-
-        if(ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
-
-            Proxy selected_proxy=(Proxy)jComboBox_Request_Proxy.getSelectedItem();
-
-            jComboBox_Request_MSS.removeAllItems();
-
-            for (MobilSupportServer mss:selected_proxy.mssList){
-                jComboBox_Request_MSS.addItem(mss);
-            }
-
-            jComboBox_Request_MSSActionPerformed();
-
-
-        }
+        jComboBox_Request_ProxyActionPerformed();
     }
+
+
 
     private void jComboBox_Request_MSSActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -527,8 +502,10 @@ public class ControlUI extends javax.swing.JFrame {
 
         if (ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_INFORM){
             mobilHost.submitRequest(ProjectConstants.requestCounter.toString());
+
         }else if (ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
                 // add for proxy
+            mobilHost.submitRequest_proxy(ProjectConstants.requestCounter.toString());
 
         }else {// for replication
 
@@ -545,6 +522,7 @@ public class ControlUI extends javax.swing.JFrame {
             mainObject.tk.executeToken();
         }else if (ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
             // add for proxy
+            mainObject.tk.executeProxy();
 
         }else {// for replication
             mainObject.tk.execute_3();
@@ -557,6 +535,7 @@ public class ControlUI extends javax.swing.JFrame {
 
         if (ProjectConstants.CURRENT_SCHEME != jComboBox_ChangeScheme.getSelectedItem().toString()){
             ProjectConstants.CURRENT_SCHEME =jComboBox_ChangeScheme.getSelectedItem().toString();
+            ProjectConstants.requestCounter=0;
             initializeChangeScheme();
         }
 
@@ -567,10 +546,15 @@ public class ControlUI extends javax.swing.JFrame {
         MobilHost selected_mh=(MobilHost)jComboBox_CHL_Host.getSelectedItem();
         MobilSupportServer new_mss=(MobilSupportServer)jComboBox_CHL_New_MSS.getSelectedItem();
 
-        if (!new_mss.equals((MobilSupportServer)jComboBox_CHL_Old_MSS.getSelectedItem())){
-            selected_mh.moveTo(new_mss);
-        }
 
+        if (!new_mss.equals((MobilSupportServer)jComboBox_CHL_Old_MSS.getSelectedItem())){
+            if (ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
+                selected_mh.moveTo_Proxy(new_mss);
+            }else {
+
+                selected_mh.moveTo(new_mss);
+            }
+        }
     }
 
 
@@ -632,7 +616,58 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void initializeProxyScheme(){
 
+        mainObject.initProxyScheme();
+        jComboBox_Select_MSS.removeAllItems();
+
+
+        // for change in select area
+        for (TokenNode proxy: mainObject.nodeList){
+            jComboBox_Select_MSS.addItem(proxy);
+        }
+        jComboBox_Select_MSSActionPerformed();
+
+
+        //for change in "Change Host Location" area
+
+        jComboBox_CHL_Old_Proxy.removeAllItems();
+
+        for (TokenNode mss:mainObject.nodeList){
+            jComboBox_CHL_Old_Proxy.addItem(mss);
+        }
+        jComboBox_CHL_Old_ProxyActionPerformed();
+
+
+
+        //for change in "Make Request" area
+
+        jComboBox_Request_Proxy.removeAllItems();
+
+        for (TokenNode proxy: mainObject.nodeList){
+            jComboBox_Request_Proxy.addItem(proxy);
+        }
+        jComboBox_Request_ProxyActionPerformed();
+
     }
+
+    private void jComboBox_Request_ProxyActionPerformed() {
+        // TODO add your handling code here:
+
+        if(ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
+
+            Proxy selected_proxy=(Proxy)jComboBox_Request_Proxy.getSelectedItem();
+
+            jComboBox_Request_MSS.removeAllItems();
+
+            for (MobilSupportServer mss:selected_proxy.mssList){
+                jComboBox_Request_MSS.addItem(mss);
+            }
+
+            jComboBox_Request_MSSActionPerformed();
+
+
+        }
+    }
+
 
     private void initializeReplicationScheme(){
 
@@ -667,6 +702,25 @@ public class ControlUI extends javax.swing.JFrame {
         }
         jComboBox_Request_MSSActionPerformed();
 
+    }
+
+    private void jComboBox_CHL_Old_ProxyActionPerformed() {
+        // TODO add your handling code here:
+
+        if(ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
+
+            Proxy selected_proxy=(Proxy)jComboBox_CHL_Old_Proxy.getSelectedItem();
+
+            jComboBox_CHL_Old_MSS.removeAllItems();
+
+            for (MobilSupportServer mss:selected_proxy.mssList){
+                jComboBox_CHL_Old_MSS.addItem(mss);
+            }
+
+            jComboBox_CHL_Old_MSSActionPerformed();
+
+
+        }
     }
 
     private void jComboBox_Select_MSSActionPerformed() {
