@@ -17,4 +17,6 @@ public class ProjectConstants {
     public static int NODE_COLOR_UPDATED=2;
     public static int NODE_COLOR_CALLTRACE=3;
 
+    public static Integer requestCounter=0;
+
 }
