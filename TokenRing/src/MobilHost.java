@@ -9,6 +9,9 @@ public class MobilHost extends TokenNode{
     private boolean isHoldingToken;
     private boolean tk;
 
+    //replication approach
+    public int h_count;
+
     public String name;
 
     public MobilHost(String name){
@@ -18,6 +21,9 @@ public class MobilHost extends TokenNode{
         this.tk=false;
         currentServer=null;
         prevousServer=null;
+
+        //3
+        this.h_count=0;
 
     }
 
@@ -32,8 +38,39 @@ public class MobilHost extends TokenNode{
             this.availableForSubmit = false;
 
             System.out.println("User "+this.name+" is submitting request to the server "+this.currentServer.toString());
+
+
+
+
         }
     }
+
+    //3
+    public void request(String criticalArea){
+
+        //3
+        if(this.availableForSubmit) {
+            this.h_count++;
+            Quest q = new Quest(this, this.currentServer, criticalArea);
+            PriorityQuest pq = new PriorityQuest(q, this.h_count);
+            this.currentServer.addPendingRequest(pq);
+            System.out.println("User "+this.name+" is submitting request to the server "+this.currentServer.toString());
+        }
+    }
+
+
+    public void execute_3(Token token){
+        System.out.println("MobilHost "+this.name+" Just received a token from "+token.from);
+        System.out.println("         After access critical area "+token.q.criticalArea+", Token is going back to "+ token.from);
+
+        this.availableForSubmit=true;
+
+        forwardToken(token);
+    }
+
+
+
+
 
     public void moveTo(MobilSupportServer mss){
         if(!isHoldingToken) {
@@ -42,11 +79,11 @@ public class MobilHost extends TokenNode{
             if (prevousServer != null) {
                 this.prevousServer.map.put(this, currentServer);
 
-                this.prevousServer.userList.remove(this);
+                this.prevousServer.deleteUser(this);
             }
             if (currentServer != null) {
                 this.currentServer.map.put(this, currentServer);
-                this.currentServer.userList.add(this);
+                this.currentServer.addUser(this);
             }
         }else{
             System.out.println("Failed to move to the server "+mss.toString()+". Because the user is holding a token.");
@@ -74,6 +111,8 @@ public class MobilHost extends TokenNode{
 
 
     }
+
+
 
     public void forwardToken(Token token) {
         token.destination = token.from;

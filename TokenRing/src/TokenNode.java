@@ -27,7 +27,7 @@ public class TokenNode {
 
     }
 
-    public void putToGrantQueue(){
+    public void executeProxy(){
 
     }
 
@@ -37,7 +37,7 @@ public class TokenNode {
 
     }
 
-    public void excuteQueue(){
+    public void execute_3(Token token){
 
     }
 
@@ -45,6 +45,8 @@ public class TokenNode {
     public void addToken(Token token){
 
     }
+
+
 
 
 
