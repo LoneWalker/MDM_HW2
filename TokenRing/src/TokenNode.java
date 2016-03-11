@@ -27,7 +27,7 @@ public class TokenNode {
 
     }
 
-    public void executeProxy(){
+    public void executeProxy(Token token){
 
     }
 

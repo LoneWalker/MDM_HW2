@@ -22,6 +22,11 @@ public class MobilSupportServer extends TokenNode {
     public ArrayList<MobilSupportServer> mssList;
     public ArrayDeque bufQueue;
 
+    //proxy approach
+    public Proxy proxy;
+
+
+
 
     public MobilSupportServer(String name){
         this.userList=new ArrayList<MobilHost>();
@@ -32,6 +37,8 @@ public class MobilSupportServer extends TokenNode {
         this.grantQueue=new ArrayDeque<Quest>();
         this.map=new HashMap<TokenNode, TokenNode>();
 
+
+this.proxy=null;
 
         //replication protocol
         this.deliveryQueue=new PriorityQueue<PriorityQuest>(100,new PriorityComparator() );
@@ -63,6 +70,31 @@ public class MobilSupportServer extends TokenNode {
             return true;
         }
     }
+
+    //proxy
+    public void addToProxy(Proxy p){
+        this.proxy=p;
+        p.mssList.add(this);
+    }
+
+    public void executeProxy(Token token){
+        if(this.tk){
+            System.out.println("The token is in the server "+this.name);
+            System.out.println("Trying to forward the token to "+token.destination);
+            this.tk=false;
+            token.destination.addToken(token);
+
+        }
+        else{
+            System.out.println("There is no token in the server");
+        }
+    }
+
+
+
+
+
+
 
     public void executeToken(Token token){
 
@@ -169,6 +201,7 @@ public class MobilSupportServer extends TokenNode {
             PriorityQuest pq = (PriorityQuest) this.deliveryQueue.peek();
             if (pq.deliverable && this.userList.contains(pq.q.questSource)) {
                 pq=(PriorityQuest) this.deliveryQueue.poll();
+                System.out.println("########The priority is "+pq.priority+" #########");
                 tk.q=pq.q;
                 tk.from=this;
                 tk.destination=tk.q.questSource;
