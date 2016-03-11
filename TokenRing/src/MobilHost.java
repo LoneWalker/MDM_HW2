@@ -10,6 +10,7 @@ public class MobilHost extends TokenNode{
     private boolean tk;
 
     public String name;
+
     public MobilHost(String name){
         this.name=name;
         this.availableForSubmit=true;
@@ -19,6 +20,8 @@ public class MobilHost extends TokenNode{
         prevousServer=null;
 
     }
+
+
 
     public void submitRequest(String criticalArea){
 

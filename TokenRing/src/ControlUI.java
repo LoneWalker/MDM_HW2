@@ -1,3 +1,5 @@
+import com.sun.tools.javac.parser.Tokens;
+
 import java.util.ArrayList;
 
 /**
@@ -16,7 +18,9 @@ public class ControlUI extends javax.swing.JFrame {
 
         initComponents();
 
-        
+        init();
+
+
     }
 
     /**
@@ -452,21 +456,47 @@ public class ControlUI extends javax.swing.JFrame {
     private void jComboBox_Select_MSSActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
-        if (ProjectConstants.CURRENT_SCHEME ==ProjectConstants.SCHEME_PROXY){
+        if (ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
 
-        }else {
+            Proxy selected_proxy=(Proxy)jComboBox_Select_MSS.getSelectedItem();
 
-            ArrayList<TokenNode> mssList=mainObject.nodeList;
 
-            jComboBox_Select_MSS.removeAllItems();
+            if (selected_proxy!=null){
+                String text="";
 
-            for (TokenNode mss: mssList){
+                for (MobilSupportServer selected_mss:selected_proxy.mssList){
+
+                    text+=selected_mss+" :---> \n";
+
+                    for (MobilHost mh:selected_mss.userList){
+                        text+="\t"+mh+"\n";
+                    }
+
+                }
+
+                jTextArea_MobileHosts.setText(text);
 
             }
 
 
+        }else {
+
+            MobilSupportServer selected_mss=(MobilSupportServer)jComboBox_Select_MSS.getSelectedItem();
+
+            String text="";
+
+            if (selected_mss!=null){
+                for (MobilHost mh:selected_mss.userList){
+                    text+=mh+"\n";
+                }
+            }
+            jTextArea_MobileHosts.setText(text);
+
+
 
         }
+
+
     }
 
     private void jComboBox_CHL_Old_ProxyActionPerformed(java.awt.event.ActionEvent evt) {
@@ -474,13 +504,15 @@ public class ControlUI extends javax.swing.JFrame {
 
         if(ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
 
-            ArrayList<TokenNode> mssList=mainObject.nodeList;
+            Proxy selected_proxy=(Proxy)jComboBox_CHL_Old_Proxy.getSelectedItem();
 
-            jComboBox_Select_MSS.removeAllItems();
+            jComboBox_CHL_Old_MSS.removeAllItems();
 
-            for (TokenNode mss: mssList){
-
+            for (MobilSupportServer mss:selected_proxy.mssList){
+                jComboBox_CHL_Old_MSS.addItem(mss);
             }
+
+            jComboBox_CHL_Old_MSSActionPerformed();
 
 
         }
@@ -488,20 +520,27 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void jComboBox_CHL_Old_MSSActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
+        jComboBox_CHL_Old_MSSActionPerformed();
+
     }
+
+
 
     private void jComboBox_Request_ProxyActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
 
         if(ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
 
-            ArrayList<TokenNode> mssList=mainObject.nodeList;
+            Proxy selected_proxy=(Proxy)jComboBox_Request_Proxy.getSelectedItem();
 
-            jComboBox_Select_MSS.removeAllItems();
+            jComboBox_Request_MSS.removeAllItems();
 
-            for (TokenNode mss: mssList){
-
+            for (MobilSupportServer mss:selected_proxy.mssList){
+                jComboBox_Request_MSS.addItem(mss);
             }
+
+            jComboBox_Request_MSSActionPerformed();
 
 
         }
@@ -509,7 +548,10 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void jComboBox_Request_MSSActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+        jComboBox_Request_MSSActionPerformed();
     }
+
+
 
     private void jButton_RequestActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -530,6 +572,123 @@ public class ControlUI extends javax.swing.JFrame {
 
 
     private void initializeChangeScheme(){
+
+    }
+
+
+    private void jComboBox_Request_MSSActionPerformed() {
+        // TODO add your handling code here:
+        MobilSupportServer selected_mss=(MobilSupportServer)jComboBox_Request_MSS.getSelectedItem();
+        if (selected_mss!=null){
+            jComboBox_Request_MH.removeAllItems();
+            for (MobilHost mh:selected_mss.userList){
+                jComboBox_Request_MH.addItem(mh);
+            }
+        }
+    }
+
+    private void jComboBox_CHL_Old_MSSActionPerformed() {
+        // TODO add your handling code here:
+
+        jComboBox_CHL_Host.removeAllItems();
+
+        MobilSupportServer selected_mss=(MobilSupportServer)jComboBox_CHL_Old_MSS.getSelectedItem();
+
+
+        if (selected_mss!=null){
+            for (MobilHost mh: selected_mss.userList){
+                jComboBox_CHL_Host.addItem(mh);
+
+            }
+
+
+            jComboBox_CHL_New_MSS.removeAllItems();
+
+            if (ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
+                for (TokenNode node:mainObject.nodeList){
+                    Proxy proxy=(Proxy)node;
+
+                    for (MobilSupportServer mss:proxy.mssList){
+                        if (!selected_mss.equals(mss)){
+                            jComboBox_CHL_New_MSS.addItem(mss);
+
+                        }
+                    }
+
+
+                }
+
+            }else {
+
+                for (TokenNode node:mainObject.nodeList){
+                    if (!selected_mss.equals((MobilSupportServer)node)){
+                        jComboBox_CHL_New_MSS.addItem(node);
+                    }
+
+                }
+
+            }
+        }
+
+    }
+
+    private void init(){
+
+        ArrayList<TokenNode> mssList = mainObject.nodeList;
+
+
+
+        //for mss
+        for (TokenNode mss: mssList){
+
+            jComboBox_Select_MSS.addItem(mss);
+            jComboBox_Request_MSS.addItem(mss);
+            jComboBox_CHL_Old_MSS.addItem(mss);
+        }
+
+
+
+
+        MobilSupportServer selected_mss=(MobilSupportServer)jComboBox_CHL_Old_MSS.getSelectedItem();
+
+        jComboBox_CHL_New_MSS.removeAllItems();
+        for (TokenNode mss: mssList){
+            if (!selected_mss.equals((MobilSupportServer)mss)){
+                jComboBox_CHL_New_MSS.addItem(mss);
+
+            }
+        }
+
+
+
+        //for host
+
+        for (MobilHost mh: selected_mss.userList){
+            jComboBox_CHL_Host.addItem(mh);
+        }
+
+        selected_mss=(MobilSupportServer)jComboBox_Request_MSS.getSelectedItem();
+        for (MobilHost mh: selected_mss.userList){
+            jComboBox_Request_MH.addItem(mh);
+        }
+
+
+
+
+        String text="";
+
+        selected_mss=(MobilSupportServer)jComboBox_Select_MSS.getSelectedItem();
+
+        if (selected_mss!=null)
+        for (MobilHost mh:selected_mss.userList){
+            text+=mh+"\n";
+        }
+        jTextArea_MobileHosts.setText(text);
+
+
+
+
+
 
     }
 
