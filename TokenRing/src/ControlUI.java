@@ -831,6 +831,8 @@ public class ControlUI extends javax.swing.JFrame {
         //for mss
         for (TokenNode mss: mssList){
 
+            // we are changing these comboboxes. so its event functions will be automatically called
+            
             jComboBox_Select_MSS.addItem(mss);
             jComboBox_Request_MSS.addItem(mss);
             jComboBox_CHL_Old_MSS.addItem(mss);
@@ -839,6 +841,7 @@ public class ControlUI extends javax.swing.JFrame {
 
 
 
+        /*
         MobilSupportServer selected_mss=(MobilSupportServer)jComboBox_CHL_Old_MSS.getSelectedItem();
 
         jComboBox_CHL_New_MSS.removeAllItems();
@@ -875,7 +878,7 @@ public class ControlUI extends javax.swing.JFrame {
         }
         jTextArea_MobileHosts.setText(text);
 
-
+        */
 
 
 
