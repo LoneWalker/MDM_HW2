@@ -20,6 +20,7 @@ public class test {
 
 
         ControlUI controlUI= new ControlUI(obj);
+        controlUI.setVisible(true);
     }
 
 
@@ -78,7 +79,7 @@ public class test {
 
     public void initInfoScheme(){
 
-        init();
+        //init();
     }
     public void initProxyScheme(){
 

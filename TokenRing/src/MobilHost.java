@@ -13,6 +13,7 @@ public class MobilHost extends TokenNode{
     public int h_count;
 
     public String name;
+
     public MobilHost(String name){
         this.name=name;
         this.availableForSubmit=true;
@@ -25,6 +26,8 @@ public class MobilHost extends TokenNode{
         this.h_count=0;
 
     }
+
+
 
     public void submitRequest(String criticalArea){
 
