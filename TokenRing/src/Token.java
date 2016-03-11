@@ -12,7 +12,7 @@ public class Token {
 
     public Quest q;
     public boolean isRequestToken;
-    public MobilSupportServer initialMSS;
+    public TokenNode initialMSS;
     public int round;
     public TokenNode currentLocation;
 
@@ -22,6 +22,18 @@ public class Token {
 
 
     public Token(MobilSupportServer mss){
+        this.isRequestToken=false;
+        this.initialMSS=mss;
+        this.round=0;
+        this.from=null;
+        this.destination=null;
+        this.q=null;
+        this.currentLocation=mss;
+        this.pendingRequest=new ArrayList();
+
+    }
+
+    public Token(Proxy mss){
         this.isRequestToken=false;
         this.initialMSS=mss;
         this.round=0;
@@ -62,6 +74,13 @@ public class Token {
         System.out.println("Excuting token, the token is current in "+currentLocation.toString());
         System.out.println(" ");
         this.currentLocation.execute_3(this);
+    }
+
+    public void executeProxy(){
+        System.out.println(" ");
+        System.out.println("Excuting token, the token is current in "+currentLocation.toString());
+        System.out.println(" ");
+        this.currentLocation.executeProxy(this);
     }
 
 
