@@ -17,120 +17,13 @@ public class test {
 
     public static void main(String[] arg){
 
-
-
-
         ProjectConstants.CURRENT_SCHEME=ProjectConstants.SCHEME_INFORM;
         test obj= new test();
 
         obj.init();
 
-
-
         ControlUI controlUI= new ControlUI(obj);
         controlUI.setVisible(true);
-    }
-
-
-    private void init(){
-
-
-
-        if (graphVisualizer!=null){
-            graphVisualizer.close();
-        }
-
-        edgeCounter=0;
-
-        MobilSupportServer mss1=new MobilSupportServer("MSS_1");
-        MobilSupportServer mss2=new MobilSupportServer("MSS_2");
-        MobilSupportServer mss3=new MobilSupportServer("MSS_3");
-        MobilSupportServer mss4=new MobilSupportServer("MSS_4");
-        MobilSupportServer mss5=new MobilSupportServer("MSS_5");
-
-        nodeList=new ArrayList<TokenNode>();
-        nodeList.add(mss1);
-        nodeList.add(mss2);
-        nodeList.add(mss3);
-        nodeList.add(mss4);
-        nodeList.add(mss5);
-
-        mss1.successor=mss2;
-        mss2.successor=mss3;
-        mss3.successor=mss4;
-        mss4.successor=mss5;
-        mss5.successor=mss1;
-
-        MobilHost mh1=new MobilHost("MH_1");
-        MobilHost mh2=new MobilHost("MH_2");
-        MobilHost mh3=new MobilHost("MH_3");
-        MobilHost mh4=new MobilHost("MH_4");
-        MobilHost mh5=new MobilHost("MH_5");
-
-        mh1.moveTo(mss1);
-        mh2.moveTo(mss2);
-        mh3.moveTo(mss3);
-        mh4.moveTo(mss4);
-        mh5.moveTo(mss5);
-
-        tk=new Token(mss1);
-
-        mss1.addToken(tk);
-
-
-        //for graph visualization
-
-
-        /*
-        MobilSupportServer mss1=new MobilSupportServer("MSS_1");
-        MobilSupportServer mss2=new MobilSupportServer("MSS_2");
-        MobilSupportServer mss3=new MobilSupportServer("MSS_3");
-        MobilSupportServer mss4=new MobilSupportServer("MSS_4");
-        MobilSupportServer mss5=new MobilSupportServer("MSS_5");
-
-        nodeList.add(mss1);
-        nodeList.add(mss2);
-        nodeList.add(mss3);
-        nodeList.add(mss4);
-        nodeList.add(mss5);
-
-        mss1.successor=mss2;
-        mss2.successor=mss3;
-        mss3.successor=mss4;
-        mss4.successor=mss5;
-        mss5.successor=mss1;
-        MobilHost mh1=new MobilHost("MH_1");
-        MobilHost mh2=new MobilHost("MH_2");
-        MobilHost mh3=new MobilHost("MH_3");
-        MobilHost mh4=new MobilHost("MH_4");
-        MobilHost mh5=new MobilHost("MH_5");
-        mh1.moveTo(mss1);
-        mh2.moveTo(mss2);
-        mh3.moveTo(mss3);
-        mh4.moveTo(mss4);
-        mh5.moveTo(mss5);
-
-        Token tk=new Token(mss1);
-
-        mh1.submitRequest("a");
-        mh2.submitRequest("b");
-        mh3.submitRequest("c");
-        mh4.submitRequest("d");
-        mh5.submitRequest("e");
-
-        mss1.addToken(tk);
-        tk.executeToken();
-        tk.executeToken();
-        mh2.moveTo(mss3);
-        tk.executeToken();
-        tk.executeToken();
-        tk.executeToken();
-        tk.executeToken();
-        tk.executeToken();
-        tk.executeToken();
-        System.out.println("end?");
-         */
-
     }
 
     public void initInfoScheme(){
@@ -138,55 +31,7 @@ public class test {
         init();
     }
     public void initProxyScheme(){
-        edgeCounter=0;
 
-        /*
-
-        Proxy p1=new Proxy("proxy_1");
-        Proxy p2=new Proxy("proxy_2");
-        MobilSupportServer mss1=new MobilSupportServer("MSS_1");
-        MobilSupportServer mss2=new MobilSupportServer("MSS_2");
-        MobilSupportServer mss3=new MobilSupportServer("MSS_3");
-        MobilSupportServer mss4=new MobilSupportServer("MSS_4");
-        MobilSupportServer mss5=new MobilSupportServer("MSS_5");
-
-        nodeList=new ArrayList<TokenNode>();
-
-        nodeList.add(p1);
-        nodeList.add(p2);
-
-        mss1.addToProxy(p1);
-        mss2.addToProxy(p1);
-        mss3.addToProxy(p1);
-        mss4.addToProxy(p2);
-        mss5.addToProxy(p2);
-
-        p1.successor=p2;
-        p2.successor=p1;
-
-        MobilHost mh1=new MobilHost("MH_1");
-        MobilHost mh2=new MobilHost("MH_2");
-        MobilHost mh3=new MobilHost("MH_3");
-        MobilHost mh4=new MobilHost("MH_4");
-        MobilHost mh5=new MobilHost("MH_5");
-
-        mh1.moveTo_Proxy(mss1);
-        mh2.moveTo_Proxy(mss2);
-        mh3.moveTo_Proxy(mss3);
-        mh4.moveTo_Proxy(mss4);
-        mh5.moveTo_Proxy(mss5);
-
-        tk=new Token(p1);
-        p1.addToken(tk);
-
-
-*/
-
-
-
-
-
-        graph   =   new DirectedOrderedSparseMultigraph<TokenNode, Number>();
 
         Proxy vertex1 = new Proxy("P_1");
         Proxy vertex2 = new Proxy("P_2");
@@ -202,9 +47,6 @@ public class test {
         MobilSupportServer vertex11 = new MobilSupportServer("MSS_7");
         MobilSupportServer vertex12 = new MobilSupportServer("MSS_8");
 
-
-
-        //for logical part
         nodeList=new ArrayList<TokenNode>();
         nodeList.add(vertex1);
         nodeList.add(vertex2);
@@ -265,24 +107,12 @@ public class test {
 
 
 
-        /*
-        final TokenNode vertex13 = new MobilSupportServer("13");
-        final TokenNode vertex14 = new TokenNode("14",1);
-        final TokenNode vertex15 = new TokenNode("15",1);
-        final TokenNode vertex16 = new TokenNode("16",1);
-        final TokenNode vertex17 = new TokenNode("17",1);
-        final TokenNode vertex18 = new TokenNode("18",1);
-        final TokenNode vertex19 = new TokenNode("19",1);
-        final TokenNode vertex20 = new TokenNode("20",1);
-        /*
-        final String vertex6 = "6";
-        final String vertex7 = "7";
-        final String vertex8 = "8";
-        final String vertex9 = "9";
 
-
-*/
         /************for graph visualization**************/
+
+
+        edgeCounter=0;
+        graph   =   new DirectedOrderedSparseMultigraph<TokenNode, Number>();
 
         graph.addVertex(vertex1);
         graph.addVertex(vertex2);
@@ -306,7 +136,8 @@ public class test {
         graph.addVertex(vertex18);
         graph.addVertex(vertex19);
         graph.addVertex(vertex20);
-    */
+
+        */
 
         //proxy
         graph.addEdge(edgeCounter++, vertex1, vertex2);
@@ -332,89 +163,20 @@ public class test {
 
         graphVisualizer=new GraphPanel(graph);
 
-
-
-        /*
-        Proxy p1=new Proxy("proxy_1");
-        Proxy p2=new Proxy("proxy_2");
-        MobilSupportServer mss1=new MobilSupportServer("MSS_1");
-        MobilSupportServer mss2=new MobilSupportServer("MSS_2");
-        MobilSupportServer mss3=new MobilSupportServer("MSS_3");
-        MobilSupportServer mss4=new MobilSupportServer("MSS_4");
-        MobilSupportServer mss5=new MobilSupportServer("MSS_5");
-
-        nodeList.add(p1);
-        nodeList.add(p2);
-
-        mss1.addToProxy(p1);
-        mss2.addToProxy(p1);
-        mss3.addToProxy(p1);
-        mss4.addToProxy(p2);
-        mss5.addToProxy(p2);
-
-        p1.successor=p2;
-        p2.successor=p1;
-
-        MobilHost mh1=new MobilHost("MH_1");
-        MobilHost mh2=new MobilHost("MH_2");
-        MobilHost mh3=new MobilHost("MH_3");
-        MobilHost mh4=new MobilHost("MH_4");
-        MobilHost mh5=new MobilHost("MH_5");
-
-        mh1.moveTo_Proxy(mss1);
-        mh2.moveTo_Proxy(mss2);
-        mh3.moveTo_Proxy(mss3);
-        mh4.moveTo_Proxy(mss4);
-        mh5.moveTo_Proxy(mss5);
-
-        Token tk=new Token(p1);
-
-        mh1.submitRequest_proxy("a");
-        mh2.submitRequest_proxy("b");
-        mh3.submitRequest_proxy("c");
-        mh4.submitRequest_proxy("d");
-        mh5.submitRequest_proxy("e");
-
-        p1.addToken(tk);
-        tk.executeProxy();
-        tk.executeProxy();
-        mh3.moveTo_Proxy(mss4);
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-        tk.executeProxy();
-         */
-
     }
 
     public void initReplicationScheme(){
 
 
-
-        edgeCounter=0;
-        if (graphVisualizer!=null){
-            graphVisualizer.close();
-        }
-
         MobilSupportServer mss1=new MobilSupportServer("MSS_1");
         MobilSupportServer mss2=new MobilSupportServer("MSS_2");
         MobilSupportServer mss3=new MobilSupportServer("MSS_3");
         MobilSupportServer mss4=new MobilSupportServer("MSS_4");
         MobilSupportServer mss5=new MobilSupportServer("MSS_5");
+        MobilSupportServer mss6=new MobilSupportServer("MSS_6");
+        MobilSupportServer mss7=new MobilSupportServer("MSS_7");
+        MobilSupportServer mss8=new MobilSupportServer("MSS_8");
+
 
         nodeList=new ArrayList<TokenNode>();
         nodeList.add(mss1);
@@ -422,6 +184,9 @@ public class test {
         nodeList.add(mss3);
         nodeList.add(mss4);
         nodeList.add(mss5);
+        nodeList.add(mss6);
+        nodeList.add(mss7);
+        nodeList.add(mss8);
 
         initLocalListOfMSS(nodeList);
 
@@ -430,79 +195,182 @@ public class test {
         mss2.successor=mss3;
         mss3.successor=mss4;
         mss4.successor=mss5;
-        mss5.successor=mss1;
+        mss5.successor=mss6;
+        mss6.successor=mss7;
+        mss7.successor=mss8;
+        mss8.successor=mss1;
+
         MobilHost mh1=new MobilHost("MH_1");
         MobilHost mh2=new MobilHost("MH_2");
         MobilHost mh3=new MobilHost("MH_3");
         MobilHost mh4=new MobilHost("MH_4");
         MobilHost mh5=new MobilHost("MH_5");
-
+        MobilHost mh6=new MobilHost("MH_6");
+        MobilHost mh7=new MobilHost("MH_7");
+        MobilHost mh8=new MobilHost("MH_8");
+        MobilHost mh9=new MobilHost("MH_9");
+        MobilHost mh10=new MobilHost("MH_10");
+        MobilHost mh11=new MobilHost("MH_11");
+        MobilHost mh12=new MobilHost("MH_12");
+        MobilHost mh13=new MobilHost("MH_13");
+        MobilHost mh14=new MobilHost("MH_14");
+        MobilHost mh15=new MobilHost("MH_15");
+        MobilHost mh16=new MobilHost("MH_16");
 
         mh1.moveTo(mss1);
-        mh2.moveTo(mss2);
-        mh3.moveTo(mss3);
-        mh4.moveTo(mss4);
-        mh5.moveTo(mss5);
+        mh2.moveTo(mss1);
+        mh3.moveTo(mss2);
+        mh4.moveTo(mss2);
+        mh5.moveTo(mss3);
+        mh6.moveTo(mss3);
+        mh7.moveTo(mss4);
+        mh8.moveTo(mss4);
+        mh9.moveTo(mss5);
+        mh10.moveTo(mss5);
+        mh11.moveTo(mss6);
+        mh12.moveTo(mss6);
+        mh13.moveTo(mss7);
+        mh14.moveTo(mss7);
+        mh15.moveTo(mss8);
+        mh16.moveTo(mss8);
 
         tk=new Token(mss1);
         mss1.addToken(tk);
 
-        /*
+
+
+        /************************ Code for graph visualization******************/
+
+        edgeCounter =   0;
+        graph   =   new DirectedOrderedSparseMultigraph<TokenNode, Number>();
+
+        graph.addVertex(mss1);
+        graph.addVertex(mss2);
+        graph.addVertex(mss3);
+        graph.addVertex(mss4);
+        graph.addVertex(mss5);
+        graph.addVertex(mss6);
+        graph.addVertex(mss7);
+        graph.addVertex(mss8);
+
+
+        graph.addEdge(edgeCounter++,mss1,mss2);
+        graph.addEdge(edgeCounter++,mss2,mss3);
+        graph.addEdge(edgeCounter++,mss3,mss4);
+        graph.addEdge(edgeCounter++,mss4,mss5);
+        graph.addEdge(edgeCounter++,mss5,mss6);
+        graph.addEdge(edgeCounter++,mss6,mss7);
+        graph.addEdge(edgeCounter++,mss7,mss8);
+        graph.addEdge(edgeCounter++,mss8,mss1);
+
+
+        if (graphVisualizer!=null){
+            graphVisualizer.close();
+        }
+        graphVisualizer=new GraphPanel(graph);
+
+
+    }
+
+
+    private void init(){
+
         MobilSupportServer mss1=new MobilSupportServer("MSS_1");
         MobilSupportServer mss2=new MobilSupportServer("MSS_2");
         MobilSupportServer mss3=new MobilSupportServer("MSS_3");
         MobilSupportServer mss4=new MobilSupportServer("MSS_4");
         MobilSupportServer mss5=new MobilSupportServer("MSS_5");
+        MobilSupportServer mss6=new MobilSupportServer("MSS_6");
+        MobilSupportServer mss7=new MobilSupportServer("MSS_7");
+        MobilSupportServer mss8=new MobilSupportServer("MSS_8");
 
+        nodeList=new ArrayList<TokenNode>();
         nodeList.add(mss1);
         nodeList.add(mss2);
         nodeList.add(mss3);
         nodeList.add(mss4);
         nodeList.add(mss5);
-
-        initLocalListOfMSS(nodeList);
+        nodeList.add(mss6);
+        nodeList.add(mss7);
+        nodeList.add(mss8);
 
         mss1.successor=mss2;
         mss2.successor=mss3;
         mss3.successor=mss4;
         mss4.successor=mss5;
-        mss5.successor=mss1;
+        mss5.successor=mss6;
+        mss6.successor=mss7;
+        mss7.successor=mss8;
+        mss8.successor=mss1;
+
         MobilHost mh1=new MobilHost("MH_1");
         MobilHost mh2=new MobilHost("MH_2");
         MobilHost mh3=new MobilHost("MH_3");
         MobilHost mh4=new MobilHost("MH_4");
         MobilHost mh5=new MobilHost("MH_5");
+        MobilHost mh6=new MobilHost("MH_6");
+        MobilHost mh7=new MobilHost("MH_7");
+        MobilHost mh8=new MobilHost("MH_8");
+        MobilHost mh9=new MobilHost("MH_9");
+        MobilHost mh10=new MobilHost("MH_10");
+        MobilHost mh11=new MobilHost("MH_11");
+        MobilHost mh12=new MobilHost("MH_12");
+        MobilHost mh13=new MobilHost("MH_13");
+        MobilHost mh14=new MobilHost("MH_14");
+        MobilHost mh15=new MobilHost("MH_15");
+        MobilHost mh16=new MobilHost("MH_16");
+
         mh1.moveTo(mss1);
-        mh2.moveTo(mss2);
-        mh3.moveTo(mss3);
-        mh4.moveTo(mss4);
-        mh5.moveTo(mss5);
-
-        Token tk=new Token(mss1);
-        mh1.request("a");
-        mh2.request("b");
-        mh3.request("c");
-        mh4.request("d");
-        mh5.request("e");
-
-        mss1.addToken(tk);
-        tk.execute_3();
-        tk.execute_3();
+        mh2.moveTo(mss1);
         mh3.moveTo(mss2);
-        tk.execute_3();
-        tk.execute_3();
-        tk.execute_3();
-        tk.execute_3();
-        tk.execute_3();
-        tk.execute_3();
-        tk.execute_3();
-        tk.execute_3();
-        tk.execute_3();
-        tk.execute_3();
-        tk.execute_3();
-        tk.execute_3();
-        System.out.println("end?");
-         */
+        mh4.moveTo(mss2);
+        mh5.moveTo(mss3);
+        mh6.moveTo(mss3);
+        mh7.moveTo(mss4);
+        mh8.moveTo(mss4);
+        mh9.moveTo(mss5);
+        mh10.moveTo(mss5);
+        mh11.moveTo(mss6);
+        mh12.moveTo(mss6);
+        mh13.moveTo(mss7);
+        mh14.moveTo(mss7);
+        mh15.moveTo(mss8);
+        mh16.moveTo(mss8);
+
+        tk=new Token(mss1);
+        mss1.addToken(tk);
+
+
+        /***************** Code for Graph visualization****************/
+
+
+        edgeCounter =   0;
+        graph   =   new DirectedOrderedSparseMultigraph<TokenNode, Number>();
+
+        graph.addVertex(mss1);
+        graph.addVertex(mss2);
+        graph.addVertex(mss3);
+        graph.addVertex(mss4);
+        graph.addVertex(mss5);
+        graph.addVertex(mss6);
+        graph.addVertex(mss7);
+        graph.addVertex(mss8);
+
+
+        graph.addEdge(edgeCounter++,mss1,mss2);
+        graph.addEdge(edgeCounter++,mss2,mss3);
+        graph.addEdge(edgeCounter++,mss3,mss4);
+        graph.addEdge(edgeCounter++,mss4,mss5);
+        graph.addEdge(edgeCounter++,mss5,mss6);
+        graph.addEdge(edgeCounter++,mss6,mss7);
+        graph.addEdge(edgeCounter++,mss7,mss8);
+        graph.addEdge(edgeCounter++,mss8,mss1);
+
+
+        if (graphVisualizer!=null){
+            graphVisualizer.close();
+        }
+        graphVisualizer=new GraphPanel(graph);
 
 
     }
