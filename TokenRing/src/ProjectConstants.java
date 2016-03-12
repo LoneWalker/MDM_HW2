@@ -19,4 +19,10 @@ public class ProjectConstants {
 
     public static Integer requestCounter=0;
 
+
+    public static int VERTEX_TYPE_PROXY=0;
+    public static int VERTEX_TYPE_MSS=1;
+    public static int VERTEX_TYPE_MH=2;
+
+
 }

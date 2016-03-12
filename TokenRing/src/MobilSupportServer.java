@@ -29,6 +29,9 @@ public class MobilSupportServer extends TokenNode {
 
 
     public MobilSupportServer(String name){
+
+        super(name,ProjectConstants.VERTEX_TYPE_MSS);
+
         this.userList=new ArrayList<MobilHost>();
         this.name=name;
         this.waitingRingReturn=false;

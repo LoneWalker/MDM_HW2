@@ -581,7 +581,11 @@ public class ControlUI extends javax.swing.JFrame {
     private void initializeInformScheme(){
 
         mainObject.initInfoScheme();
+
+        jComboBox_CHL_Old_Proxy.removeAllItems();
+        jComboBox_Request_Proxy.removeAllItems();
         jComboBox_Select_MSS.removeAllItems();
+
 
 
         // for change in select area
@@ -624,6 +628,9 @@ public class ControlUI extends javax.swing.JFrame {
         for (TokenNode proxy: mainObject.nodeList){
             jComboBox_Select_MSS.addItem(proxy);
         }
+
+
+
         jComboBox_Select_MSSActionPerformed();
 
 
@@ -647,31 +654,17 @@ public class ControlUI extends javax.swing.JFrame {
         }
         jComboBox_Request_ProxyActionPerformed();
 
+
     }
-
-    private void jComboBox_Request_ProxyActionPerformed() {
-        // TODO add your handling code here:
-
-        if(ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
-
-            Proxy selected_proxy=(Proxy)jComboBox_Request_Proxy.getSelectedItem();
-
-            jComboBox_Request_MSS.removeAllItems();
-
-            for (MobilSupportServer mss:selected_proxy.mssList){
-                jComboBox_Request_MSS.addItem(mss);
-            }
-
-            jComboBox_Request_MSSActionPerformed();
-
-
-        }
-    }
-
 
     private void initializeReplicationScheme(){
 
         mainObject.initReplicationScheme();
+        jComboBox_CHL_Old_Proxy.removeAllItems();
+        jComboBox_Request_Proxy.removeAllItems();
+
+
+
         jComboBox_Select_MSS.removeAllItems();
 
 
@@ -704,6 +697,29 @@ public class ControlUI extends javax.swing.JFrame {
 
     }
 
+
+    private void jComboBox_Request_ProxyActionPerformed() {
+        // TODO add your handling code here:
+
+        if(ProjectConstants.CURRENT_SCHEME==ProjectConstants.SCHEME_PROXY){
+
+            Proxy selected_proxy=(Proxy)jComboBox_Request_Proxy.getSelectedItem();
+
+            jComboBox_Request_MSS.removeAllItems();
+
+            for (MobilSupportServer mss:selected_proxy.mssList){
+                jComboBox_Request_MSS.addItem(mss);
+            }
+
+            jComboBox_Request_MSSActionPerformed();
+
+
+        }
+    }
+
+
+
+
     private void jComboBox_CHL_Old_ProxyActionPerformed() {
         // TODO add your handling code here:
 
@@ -713,8 +729,12 @@ public class ControlUI extends javax.swing.JFrame {
 
             jComboBox_CHL_Old_MSS.removeAllItems();
 
-            for (MobilSupportServer mss:selected_proxy.mssList){
-                jComboBox_CHL_Old_MSS.addItem(mss);
+            if (selected_proxy!=null){
+
+                for (MobilSupportServer mss:selected_proxy.mssList){
+                    jComboBox_CHL_Old_MSS.addItem(mss);
+                }
+
             }
 
             jComboBox_CHL_Old_MSSActionPerformed();
@@ -832,7 +852,7 @@ public class ControlUI extends javax.swing.JFrame {
         for (TokenNode mss: mssList){
 
             // we are changing these comboboxes. so its event functions will be automatically called
-            
+
             jComboBox_Select_MSS.addItem(mss);
             jComboBox_Request_MSS.addItem(mss);
             jComboBox_CHL_Old_MSS.addItem(mss);

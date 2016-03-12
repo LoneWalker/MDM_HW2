@@ -17,6 +17,8 @@ public class Proxy extends TokenNode {
     public ArrayList<MobilSupportServer> mssList;
 
     public Proxy(String name){
+        super(name,ProjectConstants.VERTEX_TYPE_PROXY);
+
         this.mssList=new ArrayList<MobilSupportServer>();
         this.name=name;
         this.waitingRingReturn=false;

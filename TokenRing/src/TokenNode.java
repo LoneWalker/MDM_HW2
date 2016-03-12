@@ -1,14 +1,17 @@
+import org.omg.CORBA.INTERNAL;
+
 /**
  * Created by azhar on 3/9/16.
  */
 public class TokenNode {
     public String name;
+    public int vertexType;
 
     TokenNode(){}
 
-    TokenNode(String name){
+    TokenNode(String name, int vertexType){
         this.name=name;
-
+        this.vertexType=vertexType;
     }
 
     @Override
