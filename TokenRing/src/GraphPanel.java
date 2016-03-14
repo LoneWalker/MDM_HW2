@@ -43,6 +43,7 @@ public class GraphPanel {
 
 
     Graph<TokenNode,Number> graph;
+    VisualizationViewer<TokenNode,Number> graphViewer;
 
     JFrame frame;
 
@@ -111,14 +112,20 @@ public class GraphPanel {
 
         Transformer<TokenNode,Paint> vertexColor = new Transformer<TokenNode,Paint>() {
             public Paint transform(TokenNode h) {
-                if(h.vertexType==ProjectConstants.VERTEX_TYPE_PROXY)
-                    return Color.BLUE;
-                else if (h.vertexType==ProjectConstants.VERTEX_TYPE_MSS)
-                    return Color.YELLOW;
-                else if (h.vertexType==ProjectConstants.VERTEX_TYPE_MH)
-                    return Color.RED;
-                else    // color for call trace
-                    return Color.MAGENTA;
+
+                if (h.changeColor){
+                    return Color.CYAN;
+
+                }else {
+                    if(h.vertexType==ProjectConstants.VERTEX_TYPE_PROXY)
+                        return Color.BLUE;
+                    else if (h.vertexType==ProjectConstants.VERTEX_TYPE_MSS)
+                        return Color.YELLOW;
+                    else
+                        return Color.RED;
+
+                }
+
 
             }
         };
@@ -127,6 +134,8 @@ public class GraphPanel {
 
         vv0 = new VisualizationViewer<TokenNode,Number>(vm0, preferredSize);
         vv2 = new VisualizationViewer<TokenNode,Number>(vm2, preferredSizeRect);
+
+        graphViewer=vv2;
 
 
         vv2.getRenderContext().setVertexFillPaintTransformer(vertexColor);
@@ -153,122 +162,14 @@ public class GraphPanel {
         frame.setVisible(true);
 
 
+
+
     }
     public void close(){
         frame.setVisible(false);
         frame.dispose();
     }
 
-    public static void main(String arg[]){
-
-        Graph<TokenNode,Number> graph=createGraph();
-        Forest<String,Number> tree;
-
-        VisualizationViewer<TokenNode,Number> vv2;
-        VisualizationViewer<TokenNode,Number> vv0;
-
-
-
-        Dimension preferredSize = new Dimension(1500,800);
-        Dimension preferredLayoutSize = new Dimension(1500,800);
-        Dimension preferredSizeRect = new Dimension(1500,800);
-
-        /*
-        Dimension preferredSize = new Dimension(300,300);
-        Dimension preferredLayoutSize = new Dimension(400,400);
-        Dimension preferredSizeRect = new Dimension(500,250);
-
-        */
-
-        /*
-        MinimumSpanningForest2<String,Number> prim =
-                new MinimumSpanningForest2<String,Number>(graph,
-                        new DelegateForest<String,Number>(), DelegateTree.<String,Number>getFactory(),
-                        new ConstantTransformer(1.0));
-
-
-        tree = prim.getForest();
-*/
-        // create two layouts for the one graph, one layout for each model
-
-
-        Layout<TokenNode,Number> layout0 = new KKLayout<TokenNode,Number>(graph);
-        layout0.setSize(preferredLayoutSize);
-       // Layout<String,Number> layout1 = new TreeLayout<String, Number>(tree,150,150);
-        //Layout<String,Number> layout2 = new StaticLayout<String,Number>(graph, layout1);
-        Layout<TokenNode,Number> layout2 = new StaticLayout<TokenNode,Number>(graph, layout0);
-
-
-        VisualizationModel<TokenNode,Number> vm0 =
-                new DefaultVisualizationModel<TokenNode,Number>(layout0, preferredSize);
-        VisualizationModel<TokenNode,Number> vm2 = new DefaultVisualizationModel<TokenNode,Number>(layout2, preferredSizeRect);
-
-
-        // adding transformer for fixing vertex size
-
-        Transformer<TokenNode,Shape> vertexSize = new Transformer<TokenNode,Shape>(){
-            public Shape transform(TokenNode i){
-                Ellipse2D circle = new Ellipse2D.Double(-15, -15, 30, 30);
-                // in this case, the vertex is twice as large
-
-
-                if (i.vertexType==ProjectConstants.VERTEX_TYPE_PROXY){
-                    return AffineTransform.getScaleInstance(3, 3).createTransformedShape(circle);
-                }else if (i.vertexType==ProjectConstants.VERTEX_TYPE_MSS){
-                    return AffineTransform.getScaleInstance(2.5, 2.5).createTransformedShape(circle);
-                }else {
-                    return AffineTransform.getScaleInstance(2, 2).createTransformedShape(circle);
-                }
-
-
-                //else return circle;
-            }
-        };
-
-        Transformer<TokenNode,Paint> vertexColor = new Transformer<TokenNode,Paint>() {
-            public Paint transform(TokenNode h) {
-                if(h.vertexType==ProjectConstants.VERTEX_TYPE_PROXY)
-                    return Color.BLUE;
-                else if (h.vertexType==ProjectConstants.VERTEX_TYPE_MSS)
-                    return Color.YELLOW;
-                else if (h.vertexType==ProjectConstants.VERTEX_TYPE_MH)
-                    return Color.RED;
-                else    // color for call trace
-                    return Color.MAGENTA;
-
-            }
-        };
-
-
-
-        vv0 = new VisualizationViewer<TokenNode,Number>(vm0, preferredSize);
-        vv2 = new VisualizationViewer<TokenNode,Number>(vm2, preferredSizeRect);
-
-
-        vv2.getRenderContext().setVertexFillPaintTransformer(vertexColor);
-        vv2.getRenderContext().setMultiLayerTransformer(vv0.getRenderContext().getMultiLayerTransformer());
-        vv2.getRenderContext().setEdgeShapeTransformer(new EdgeShape.Line());
-        vv2.getRenderContext().setVertexLabelTransformer(new ToStringLabeller());
-        vv2.getRenderContext().setVertexShapeTransformer(vertexSize);
-
-        Color back = Color.decode("0xffffbb");
-
-        vv2.setBackground(back);
-
-        vv2.getRenderer().getVertexLabelRenderer().setPosition(Renderer.VertexLabel.Position.CNTR);
-        //vv2.setForeground(Color.darkGray);
-
-
-        vv2.setLayout(new BorderLayout());
-
-        JFrame frame = new JFrame("Simple Graph View");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(vv2);
-        frame.pack();
-        frame.setVisible(true);
-
-
-    }
 
 
     private static Graph<TokenNode, Number> createGraph() {

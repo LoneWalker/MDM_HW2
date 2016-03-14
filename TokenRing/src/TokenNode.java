@@ -6,6 +6,7 @@ import org.omg.CORBA.INTERNAL;
 public class TokenNode {
     public String name;
     public int vertexType;
+    public boolean changeColor=false;
 
     TokenNode(){}
 
