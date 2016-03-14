@@ -63,27 +63,30 @@ public class Token {
     }
 
     public TokenNode executeToken(){
+        TokenNode prev_tokenNode=currentLocation;
         System.out.println(" ");
         System.out.println("Excuting token, the token is current in "+currentLocation.toString());
         System.out.println(" ");
         this.currentLocation.executeToken(this);
-        return currentLocation;
+        return prev_tokenNode;
     }
 
     public TokenNode execute_3(){
+        TokenNode prev_tokenNode=currentLocation;
         System.out.println(" ");
         System.out.println("Excuting token, the token is current in "+currentLocation.toString());
         System.out.println(" ");
         this.currentLocation.execute_3(this);
-        return currentLocation;
+        return prev_tokenNode;
     }
 
     public TokenNode executeProxy(){
+        TokenNode prev_tokenNode=currentLocation;
         System.out.println(" ");
         System.out.println("Excuting token, the token is current in "+currentLocation.toString());
         System.out.println(" ");
         this.currentLocation.executeProxy(this);
-        return currentLocation;
+        return prev_tokenNode;
     }
 
 
